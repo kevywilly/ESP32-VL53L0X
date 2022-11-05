@@ -11,6 +11,18 @@
 #include <unistd.h>
 #include <malloc.h>
 
+struct vl53l0x_s
+{
+    uint8_t port;
+    uint8_t address;
+    int8_t xshut;
+    uint16_t io_timeout;
+    uint8_t io_2v8:1;
+    uint8_t did_timeout:1;
+    uint8_t i2c_fail:1;
+};
+
+
 typedef struct vl53l0x_s vl53l0x_t;
 
 typedef enum

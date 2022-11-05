@@ -7,9 +7,9 @@ static const char __attribute__((unused)) TAG[] = "ranger";
 #include "esp_log.h"
 #include <driver/i2c.h>
 
-#define TIMEOUT	(10/portTICK_PERIOD_MS) // I2C command timeout
+#define TIMEOUT   (10/portTICK_PERIOD_MS) // I2C command timeout
 
-#ifdef	CONFIG_VL53L0X_DEBUG
+#ifdef   CONFIG_VL53L0X_DEBUG
 #define VL53L0X_LOG   ESP_LOGI        // Set to allow I2C logging
 #endif
 
@@ -102,16 +102,6 @@ enum
    ALGO_PHASECAL_CONFIG_TIMEOUT = 0x30,
 };
 
-struct vl53l0x_s
-{
-   uint8_t port;
-   uint8_t address;
-   int8_t xshut;
-   uint16_t io_timeout;
-   uint8_t io_2v8:1;
-   uint8_t did_timeout:1;
-   uint8_t i2c_fail:1;
-};
 
 typedef struct
 {
@@ -681,7 +671,7 @@ vl53l0x_init (vl53l0x_t * v)
    {                            // XSHUT or power control
       gpio_set_level (v->xshut, 0);     // Off
       usleep (100000);
-      gpio_set_level (v->xshut, 0);     // On
+      gpio_set_level (v->xshut, 1);     // On
       usleep (10000);           // Plenty of time to boot (data sheet says 1.2ms)
    }
    // sensor uses 1V8 mode for I/O by default; switch to 2V8 mode if necessary
